@@ -6,7 +6,7 @@ const ItemCard = ({ data }) => {
       <div className="card-body items-center text-center">
         <h2 className="card-title">{data.name}</h2>
         <p>{data.description}</p>
-        <div className="card-actions">
+        <div className="card bg-primary">
           {data.price}
         </div>
       </div>
