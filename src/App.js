@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <NavBar></NavBar>
-      <ItemListContainer greeting={"Lista de Productos"}></ItemListContainer></>
+      <ItemListContainer></ItemListContainer></>
   );
 }
 
