@@ -1,16 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ItemCard = ({ data }) => {
   return (
-    <div className="card w-96 bg-base-300 shadow-xl">
-      <div className="card-body items-center text-center">
-        <h2 className="card-title">{data.name}</h2>
-        <p>{data.description}</p>
-        <div className="card bg-primary">
-          {data.price}
+    <Link to={`/productos/${data.id}`}>
+      <div className="card w-96 bg-base-300 shadow-xl image-full">
+        <img src={data.img}/>
+        <div className="card-body items-center text-center">
+          <h2 className="card-title">{data.name}</h2>
+          <div className="card bg-primary">
+            {data.price}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>    
   );
 };
 
