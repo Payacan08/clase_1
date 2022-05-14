@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from './CartContext'
+import CartInfo from './CartInfo'
 
 const CartWidget = () => {
+const {cart} = useContext(CartContext)
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex="0" className="btn btn-ghost btn-circle">
@@ -10,8 +14,7 @@ const CartWidget = () => {
       </label>
       <div tabIndex="0" className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
         <div className="card-body">
-          <span className="font-bold text-lg">Vacio</span>
-          <span className="text-info">Subtotal: $0</span>
+          {cart.length === 0 ? <span className="font-bold text-lg">Vacio</span> :<CartInfo/>}
         </div>
       </div>
     </div>
