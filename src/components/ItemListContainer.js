@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import {item as itemData} from "./Item";
 import ItemCard from "./ItemCard";
+import { collection, getDocs, getFirestore, snapshotEqual } from "firebase/firestore";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const getItem = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(itemData);
-      }, 1000);
-    });
-
-    getItem.then((result) => {
-      setItems(result);
-    });
+    getItemData();
   }, []);
+
+  const getItemData = ()=>{
+    const db = getFirestore();
+    const itemCollection = collection(db,'items');
+    getDocs(itemCollection).then(result=>{
+      const itemData = result.docs.map(d =>({'id': d.id, ... d.data() }))
+      setItems(itemData)
+    })
+  }
 
   return(
       <div className="flex justify-center flex-wrap flex-row gap-8">

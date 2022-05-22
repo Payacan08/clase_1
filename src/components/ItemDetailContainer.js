@@ -1,23 +1,22 @@
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import {item as itemData} from "./Item";
 import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = () => {
     const [itemDet, setItemDet] = useState([]);
     const {itemId} = useParams()
     useEffect(() => {
-      
-      const getItem = new Promise((resolve, reject) => {
-        setTimeout(() => {
-        resolve(itemData.find(r=>r.id==itemId));
-        }, 1000);
-      });
-
-      getItem.then((result) => {
-        setItemDet(result);
-      });
+      getItemData();
     }, [itemId]);
+
+    const getItemData = ()=>{
+      const db = getFirestore();
+      const itemDoc = doc(db,'items',itemId);
+      getDoc(itemDoc).then(result=>{
+        setItemDet({'id': result.id, ... result.data()})
+      })
+    }
   
     return(
         <div className="flex justify-center flex-row gap-8">

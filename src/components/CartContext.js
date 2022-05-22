@@ -12,29 +12,29 @@ const CartContextProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
   
-    const addItem = (itemId)=>{
-        if (isInCart(itemId) === undefined){
+    const addItem = (itemData)=>{
+        if (isInCart(itemData.id) === undefined){
             setCart(currentCart => {
-                return currentCart.concat({itemId,num:1})
+                return currentCart.concat({itemData,num:1})
                 })
         }else{
             setCart(currentCart => {
                 return currentCart.map(item =>
-                    {return item.itemId === itemId ? {itemId,num:item.num + 1}: item})
+                    {return item.itemData.id === itemData.id ? {itemData,num:item.num + 1}: item})
                 })
         }
     }
 
     const removeItem = (itemId)=>{
         setCart(currentCart => {
-            return currentCart.filter(item=>item.itemId !== itemId)
+            return currentCart.filter(item=>item.itemData.id !== itemId)
         })
     }
 
     const clear = ()=>{setCart([])}
 
     const isInCart = (itemId)=>{
-        return cart.find((item)=>item.itemId === itemId)
+        return cart.find((item)=>item.itemData.id === itemId)
     }
 
     const context = {

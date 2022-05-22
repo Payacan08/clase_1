@@ -1,28 +1,24 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import {CartContext} from './CartContext'
-import {item as itemData} from "./Item";
 
 const CartInfo = () => {
 
-  const { cart , removeItem , clear} = useContext(CartContext)
-  
+  const { cart } = useContext(CartContext)
     let total = 0
     cart.forEach(itemCart=>{
-        total += itemCart.num * itemData.find(item=>item.id == itemCart.itemId).price
+      total += itemCart.num * itemCart.itemData.price
     })
 
   return (
     <div>
-        <label className="btn btn-sm" onClick={clear}>Limpiar</label>
         {cart.map(item=>
-            <div key={item.itemId}>
-              <label className="btn btn-xs" onClick={()=>{removeItem(item.itemId)}}>X</label>
-              Nombre: {itemData.find(itemData=>itemData.id == item.itemId).name} Cantidad: {item.num}
+            <div key={item.itemData.id}>
+              Nombre: {item.itemData.name} Cantidad: {item.num}
             </div>
           )}
         <span className="text-info">Subtotal: $ {total}</span>
-        <Link to="/carro" className="btn btn-sm" >Comprar</Link>
+        <Link to="/carro" className="btn btn-sm" >Ir a carro</Link>
     </div>
   )
 }
