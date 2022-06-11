@@ -14,7 +14,6 @@ const NavBar = () => {
             <Link to='/' className="btn btn-ghost normal-case text-xl">Inicio</Link>
             <Link to='/productos' className="btn btn-ghost normal-case text-xl">Producto</Link>
             <Link to='/galeria' className="btn btn-ghost normal-case text-xl">Galeria</Link>
-            <a className="btn btn-disabled normal-case text-xl">Comunidad</a>
         </div>
         <div className="navbar-end">
             <CartWidget></CartWidget>

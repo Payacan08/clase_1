@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ItemCard from "./ItemCard";
-import { collection, getDocs, getFirestore, snapshotEqual } from "firebase/firestore";
+import { collection, getDocs, getFirestore} from "firebase/firestore";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);

@@ -4,11 +4,7 @@ import {CartContext} from './CartContext'
 
 const CartInfo = () => {
 
-  const { cart } = useContext(CartContext)
-    let total = 0
-    cart.forEach(itemCart=>{
-      total += itemCart.num * itemCart.itemData.price
-    })
+  const { cart, totalCart } = useContext(CartContext)
 
   return (
     <div>
@@ -17,7 +13,7 @@ const CartInfo = () => {
               Nombre: {item.itemData.name} Cantidad: {item.num}
             </div>
           )}
-        <span className="text-info">Subtotal: $ {total}</span>
+        <span className="text-info">Subtotal: $ {totalCart()}</span>
         <Link to="/carro" className="btn btn-sm" >Ir a carro</Link>
     </div>
   )

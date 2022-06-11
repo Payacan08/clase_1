@@ -5,7 +5,8 @@ export const CartContext = createContext({
     addItem: (item,quantity) => {},
     removeItem: (itemId) => {},
     clear: ()=>{},
-    isInCart: (id)=>{}
+    isInCart: (id)=>{},
+    totalCart: 0
 });
 
 const CartContextProvider = ({children}) => {
@@ -37,11 +38,20 @@ const CartContextProvider = ({children}) => {
         return cart.find((item)=>item.itemData.id === itemId)
     }
 
+    const totalCart = ()=>{
+        let total = 0
+        cart.forEach(itemCart=>{
+        total += itemCart.num * itemCart.itemData.price
+        })
+        return total
+    }
+
     const context = {
         cart,
         addItem,
         removeItem,
-        clear
+        clear,
+        totalCart
     };
     
   return (

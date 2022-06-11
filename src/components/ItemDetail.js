@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {CartContext} from './CartContext'
-
+import './img/img_3.jpeg'
 
 const ItemDetail = ({data}) => {
 
